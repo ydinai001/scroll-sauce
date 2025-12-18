@@ -1557,6 +1557,145 @@
                 font-size: 24px;
             }
         }
+
+        /* Video Gallery Modal */
+        .video-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .video-modal-overlay.active {
+            display: flex;
+        }
+
+        .video-modal {
+            background: var(--dark-elevated);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        .video-gallery {
+            padding: 24px;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-video-item {
+            aspect-ratio: 9/16;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--dark-surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-video-item:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-video-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Modal Responsive */
+        @media (max-width: 768px) {
+            .video-modal {
+                max-height: 85vh;
+                border-radius: 20px;
+            }
+
+            .modal-header {
+                padding: 18px 20px;
+            }
+
+            .modal-title {
+                font-size: 18px;
+            }
+
+            .modal-close {
+                width: 38px;
+                height: 38px;
+                font-size: 20px;
+            }
+
+            .video-gallery {
+                padding: 16px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .gallery-video-item {
+                border-radius: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-gallery {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .gallery-video-item {
+                max-height: 300px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1627,7 +1766,7 @@
                     Order Your First Reel
                     <span>→</span>
                 </a>
-                <div class="cta-secondary">
+                <div class="cta-secondary" id="see-examples-btn">
                     <span>▶</span>
                     See Examples
                 </div>
@@ -1905,5 +2044,84 @@
             <p class="footer-copy">© 2024 Shimmy Edits. Making content that stops the scroll.</p>
         </div>
     </footer>
+
+    <!-- Video Gallery Modal -->
+    <div class="video-modal-overlay" id="video-modal">
+        <div class="video-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Example Edits</h3>
+                <div class="modal-close" id="modal-close">×</div>
+            </div>
+            <div class="video-gallery">
+                <div class="gallery-video-item">
+                    <video controls playsinline>
+                        <source src="assets/videos/clip-1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-video-item">
+                    <video controls playsinline>
+                        <source src="assets/videos/clip-2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-video-item">
+                    <video controls playsinline>
+                        <source src="assets/videos/clip-3.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-video-item">
+                    <video controls playsinline>
+                        <source src="assets/videos/clip-4.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-video-item">
+                    <video controls playsinline>
+                        <source src="assets/videos/clip-5.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Video Gallery Modal
+        const seeExamplesBtn = document.getElementById('see-examples-btn');
+        const videoModal = document.getElementById('video-modal');
+        const modalClose = document.getElementById('modal-close');
+        const galleryVideos = document.querySelectorAll('.video-gallery video');
+
+        // Open modal
+        seeExamplesBtn.addEventListener('click', () => {
+            videoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close modal function
+        function closeModal() {
+            videoModal.classList.remove('active');
+            document.body.style.overflow = '';
+            // Pause all videos when closing
+            galleryVideos.forEach(video => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        }
+
+        // Close on X button
+        modalClose.addEventListener('click', closeModal);
+
+        // Close on overlay click (outside modal content)
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                closeModal();
+            }
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
