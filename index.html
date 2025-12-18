@@ -1004,97 +1004,206 @@
         }
 
         .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            max-width: 1000px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 900px;
             margin: 60px auto 0;
+            flex-wrap: wrap;
         }
 
-        .testimonial-card {
-            background: var(--dark-surface);
-            border-radius: 20px;
-            padding: 32px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
+        /* TikTok Comment Style */
+        .tiktok-comment-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px 24px;
+            max-width: 380px;
+            width: 100%;
         }
 
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.3);
+        .tiktok-comment-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
         }
 
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 20px;
-            left: 24px;
-            font-size: 60px;
-            color: #ffffff;
-            opacity: 0.2;
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-
-        .testimonial-text {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-author {
+        .tiktok-comment-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #2CDCBE;
             display: flex;
             align-items: center;
-            gap: 14px;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
-        .testimonial-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            object-fit: cover;
+        .tiktok-comment-avatar svg {
+            width: 28px;
+            height: 28px;
+            color: #fff;
         }
 
-        .testimonial-name {
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 2px;
+        .tiktok-comment-content {
+            flex: 1;
         }
 
-        .testimonial-role {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            color: #888888;
-        }
-
-        .testimonial-stats {
+        .tiktok-comment-author {
             display: flex;
-            gap: 20px;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
         }
 
-        .testimonial-stat {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-
-        .testimonial-stat strong {
-            color: var(--text-primary);
+        .tiktok-comment-name {
             font-weight: 700;
+            font-size: 15px;
+            color: #000;
         }
 
-        .testimonial-stars {
-            color: #FFD700;
+        .tiktok-verified {
+            width: 16px;
+            height: 16px;
+            background: #20D5EC;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tiktok-verified svg {
+            width: 10px;
+            height: 10px;
+            color: #fff;
+        }
+
+        .tiktok-comment-text {
+            font-size: 15px;
+            color: #000;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .tiktok-comment-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 13px;
+            color: #888;
+        }
+
+        .tiktok-comment-date {
+            color: #888;
+        }
+
+        .tiktok-reply-btn {
+            color: #888;
+            font-weight: 500;
+        }
+
+        .tiktok-comment-actions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-left: auto;
+        }
+
+        .tiktok-heart {
+            color: #FE2C55;
             font-size: 18px;
-            letter-spacing: 2px;
+        }
+
+        .tiktok-likes {
+            color: #FE2C55;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .tiktok-dislike {
+            color: #ccc;
+            font-size: 18px;
+            margin-left: 8px;
+        }
+
+        /* Instagram DM Style */
+        .dm-card {
+            background: #000;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 380px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dm-message-sent {
+            background: #8B5CF6;
+            color: #fff;
+            padding: 14px 18px;
+            border-radius: 20px 20px 4px 20px;
+            font-size: 15px;
             margin-bottom: 16px;
+            margin-left: auto;
+            max-width: 85%;
+            text-align: right;
+            position: relative;
+        }
+
+        .dm-edited {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            position: absolute;
+            top: -18px;
+            right: 4px;
+        }
+
+        .dm-message-received {
+            background: #2A2A2A;
+            padding: 16px 18px;
+            border-radius: 20px 20px 20px 4px;
+            max-width: 85%;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .dm-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .dm-response-content {
+            flex: 1;
+        }
+
+        .dm-stars {
+            color: #FFB800;
+            font-size: 22px;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .dm-review-text {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .dm-tap-hint {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .dm-tap-hint span {
+            color: #FE2C55;
         }
 
         /* Top Banner */
@@ -1243,7 +1352,7 @@
             }
 
             .testimonial-grid {
-                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
             }
 
             .floating-card.card-2,
@@ -1527,21 +1636,22 @@
 
             /* Testimonials */
             .testimonial-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
             }
 
-            .testimonial-card {
-                padding: 24px;
+            .tiktok-comment-card,
+            .dm-card {
+                max-width: 100%;
             }
 
-            .testimonial-text {
+            .tiktok-comment-text {
                 font-size: 14px;
             }
 
-            .testimonial-avatar {
-                width: 40px;
-                height: 40px;
+            .dm-review-text {
+                font-size: 14px;
             }
 
             /* FAQ */
@@ -1920,87 +2030,50 @@
         </div>
 
         <div class="testimonial-grid">
-            <div class="testimonial-card testimonial-featured">
-                <p class="testimonial-text" style="font-size: 24px; font-weight: 700;">holy tuff</p>
-                <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://yt3.googleusercontent.com/ytc/AIdro_lGRc-05M2IOM-dOKhBdLZPCZGQEhFfnGDrq7ICtSMZzA=s176-c-k-c0x00ffffff-no-rj" alt="Dude Perfect" style="border-radius: 50%;">
-                    <div>
-                        <div class="testimonial-name">Dude Perfect <span style="color: #1DA1F2;">✓</span></div>
-                        <div class="testimonial-role">59M+ Subscribers</div>
+            <!-- TikTok Comment - Dude Perfect -->
+            <div class="tiktok-comment-card">
+                <div class="tiktok-comment-header">
+                    <div class="tiktok-comment-avatar">
+                        <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; font-style: italic;">dp</span>
                     </div>
-                </div>
-                <div class="testimonial-stats">
-                    <span class="testimonial-stat"><strong>❤️ 1,720</strong> likes</span>
-                    <span class="testimonial-stat">TikTok Comment</span>
+                    <div class="tiktok-comment-content">
+                        <div class="tiktok-comment-author">
+                            <span class="tiktok-comment-name">Dude Perfect</span>
+                            <div class="tiktok-verified">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="tiktok-comment-text">holy tuff</p>
+                        <div class="tiktok-comment-meta">
+                            <span class="tiktok-comment-date">11-28</span>
+                            <span class="tiktok-reply-btn">Reply</span>
+                            <div class="tiktok-comment-actions">
+                                <span class="tiktok-heart">❤️</span>
+                                <span class="tiktok-likes">1,720</span>
+                                <span class="tiktok-dislike">👎</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="testimonial-card">
-                <div class="testimonial-stars">⭐️⭐️⭐️⭐️⭐️</div>
-                <p class="testimonial-text">great job/ quick & great communication!</p>
-                <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&h=96&fit=crop" alt="Happy Client">
-                    <div>
-                        <div class="testimonial-name">Happy Client</div>
-                        <div class="testimonial-role">Verified Purchase</div>
+            <!-- Instagram DM Style - 5 Star Review -->
+            <div class="dm-card">
+                <div class="dm-message-sent">
+                    <span class="dm-edited">Edited</span>
+                    Can you rate your experience out of 5 stars with feedback?
+                </div>
+                <div class="dm-message-received">
+                    <img class="dm-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&h=96&fit=crop" alt="Client">
+                    <div class="dm-response-content">
+                        <div class="dm-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="dm-review-text">great job/ quick & great communication!</p>
                     </div>
                 </div>
-            </div>
-
-            <div class="testimonial-card">
-                <p class="testimonial-text">I used to spend 4+ hours editing each reel. Now I just send my clips and get back fire content in 3 days. Game changer for my posting consistency.</p>
-                <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop" alt="Sarah">
-                    <div>
-                        <div class="testimonial-name">Sarah Chen</div>
-                        <div class="testimonial-role">Lifestyle Creator</div>
-                    </div>
-                </div>
-                <div class="testimonial-stats">
-                    <span class="testimonial-stat"><strong>45K</strong> followers</span>
-                    <span class="testimonial-stat"><strong>3x</strong> posting frequency</span>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <p class="testimonial-text">The transitions and timing are always on point. My engagement literally doubled after I started using Shimmy Edits for my reels. Worth every penny.</p>
-                <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop" alt="Marcus">
-                    <div>
-                        <div class="testimonial-name">Marcus Lee</div>
-                        <div class="testimonial-role">Fitness Coach</div>
-                    </div>
-                </div>
-                <div class="testimonial-stats">
-                    <span class="testimonial-stat"><strong>28K</strong> followers</span>
-                    <span class="testimonial-stat"><strong>2x</strong> engagement</span>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <p class="testimonial-text">Finally found editors who actually understand the aesthetic I'm going for. The captions are always trendy and the music selection is chef's kiss.</p>
-                <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&h=96&fit=crop" alt="Mia">
-                    <div>
-                        <div class="testimonial-name">Mia Rodriguez</div>
-                        <div class="testimonial-role">Fashion Influencer</div>
-                    </div>
-                </div>
-                <div class="testimonial-stats">
-                    <span class="testimonial-stat"><strong>67K</strong> followers</span>
-                    <span class="testimonial-stat"><strong>12</strong> reels edited</span>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-stars">⭐️⭐️⭐️⭐️⭐️</div>
-                <p class="testimonial-text">Amazing work, super fast turnaround & the communication was on point the whole time. 10/10 would recommend!</p>
-                <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop" alt="Verified Client">
-                    <div>
-                        <div class="testimonial-name">Verified Client</div>
-                        <div class="testimonial-role">Content Creator</div>
-                    </div>
+                <div class="dm-tap-hint">
+                    Double tap to <span>❤️</span>
                 </div>
             </div>
         </div>
