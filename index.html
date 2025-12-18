@@ -1154,7 +1154,7 @@
             z-index: 1;
         }
 
-        /* Responsive */
+        /* Responsive - Tablet */
         @media (max-width: 1024px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -1184,35 +1184,369 @@
             .step:not(:last-child)::after {
                 display: none;
             }
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 16px 24px;
-            }
-
-            .hero, .package-section, .how-it-works, .social-proof, .testimonials, .faq-section, .final-cta {
-                padding: 80px 24px;
-            }
-
-            .steps-container {
-                grid-template-columns: 1fr;
-            }
 
             .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .floating-card.card-2,
+            .floating-card.card-3 {
+                right: -20px;
+            }
+        }
+
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            /* Header */
+            .header {
+                padding: 12px 20px;
+            }
+
+            .logo {
+                font-size: 18px;
+                gap: 8px;
+            }
+
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+                border-radius: 8px;
+            }
+
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 11px;
+            }
+
+            /* Hero Section */
+            .hero {
+                padding: 100px 20px 60px;
+                min-height: auto;
+                gap: 40px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+                letter-spacing: -1px;
+                margin-bottom: 16px;
+            }
+
+            .hero .tagline {
+                font-size: 16px;
+                margin-bottom: 24px;
+            }
+
+            .hero-badge {
+                font-size: 10px;
+                padding: 6px 12px;
+                margin-bottom: 20px;
+            }
+
+            /* Platform Badges - Stack */
+            .platforms {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 28px;
+            }
+
+            .platform-badge {
+                width: 100%;
+                max-width: 200px;
+                justify-content: center;
+                padding: 12px 20px;
+            }
+
+            /* CTA Buttons - Stack */
+            .hero-cta {
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+            }
+
+            .cta-primary {
+                width: 100%;
+                max-width: 280px;
+                padding: 16px 28px;
+                font-size: 15px;
+                justify-content: center;
+            }
+
+            .cta-secondary {
+                margin-top: 8px;
+            }
+
+            /* Hide Floating Cards on Mobile */
+            .floating-card {
+                display: none;
+            }
+
+            /* Phone Mockup - Scale Down */
+            .phone-mockup {
+                transform: scale(0.85);
+                transform-origin: center;
+            }
+
+            .phone-frame {
+                width: 240px;
+                height: 500px;
+                border-radius: 32px;
+                padding: 10px;
+            }
+
+            .phone-screen {
+                border-radius: 24px;
+            }
+
+            .phone-notch {
+                width: 100px;
+                height: 24px;
+                border-radius: 0 0 16px 16px;
+            }
+
+            /* TikTok UI - Scale */
+            .tiktok-tabs {
+                top: 32px;
+                font-size: 12px;
+                gap: 16px;
+            }
+
+            .tiktok-actions {
+                right: 8px;
+                bottom: 100px;
+                gap: 14px;
+            }
+
+            .tiktok-action-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 20px;
+            }
+
+            .tiktok-action {
+                font-size: 10px;
+            }
+
+            .tiktok-profile {
+                width: 36px;
+                height: 36px;
+            }
+
+            .tiktok-profile-plus {
+                width: 14px;
+                height: 14px;
+                font-size: 10px;
+                bottom: -4px;
+            }
+
+            .tiktok-music {
+                width: 32px;
+                height: 32px;
+                border-width: 6px;
+            }
+
+            .tiktok-creator-info {
+                bottom: 60px;
+                left: 12px;
+            }
+
+            .tiktok-username {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+
+            .tiktok-caption {
+                font-size: 11px;
+                max-width: 150px;
+                margin-bottom: 8px;
+            }
+
+            .tiktok-sound {
+                font-size: 10px;
+            }
+
+            /* Sections - Reduce Padding */
+            .package-section,
+            .how-it-works,
+            .social-proof,
+            .testimonials,
+            .faq-section,
+            .final-cta {
+                padding: 60px 20px;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .section-label {
+                font-size: 10px;
+                letter-spacing: 2px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            /* Package Card */
+            .package-card {
+                padding: 32px 24px;
+            }
+
+            .package-icon {
+                width: 52px;
+                height: 52px;
+                font-size: 24px;
+            }
+
+            .package-name {
+                font-size: 24px;
+            }
+
+            .package-price {
+                font-size: 44px;
+            }
+
+            .video-preview {
+                max-height: 400px;
+            }
+
+            /* Steps */
+            .steps-container {
                 grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 22px;
+                border-radius: 16px;
+            }
+
+            .step-title {
+                font-size: 16px;
+            }
+
+            .step-desc {
+                font-size: 13px;
+            }
+
+            /* Creator Grid */
+            .creator-grid {
+                gap: 16px;
+            }
+
+            .creator-card {
+                width: 160px;
+            }
+
+            .creator-info {
+                padding: 12px;
+            }
+
+            .creator-name {
+                font-size: 14px;
+            }
+
+            /* Testimonials */
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .testimonial-card {
+                padding: 24px;
+            }
+
+            .testimonial-text {
+                font-size: 14px;
+            }
+
+            .testimonial-avatar {
+                width: 40px;
+                height: 40px;
+            }
+
+            /* FAQ */
+            .faq-question {
+                padding: 20px;
+                font-size: 15px;
+            }
+
+            .faq-answer {
+                padding: 0 20px 20px;
+                font-size: 14px;
+            }
+
+            /* Final CTA */
+            .final-cta h2 {
+                font-size: 26px;
+            }
+
+            .final-cta p {
+                font-size: 15px;
+            }
+
+            .final-cta .cta-primary {
+                font-size: 16px;
+                padding: 18px 36px;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 40px 20px;
             }
 
             .footer-content {
                 flex-direction: column;
-                gap: 24px;
+                gap: 20px;
                 text-align: center;
+            }
+
+            .footer-logo {
+                font-size: 18px;
+            }
+
+            .footer-copy {
+                font-size: 12px;
             }
         }
 
-        @media (max-width: 1024px) {
-            .testimonial-grid {
-                grid-template-columns: repeat(2, 1fr);
+        /* Responsive - Small Mobile */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero .tagline {
+                font-size: 14px;
+            }
+
+            .phone-mockup {
+                transform: scale(0.75);
+            }
+
+            .platform-badge {
+                font-size: 12px;
+            }
+
+            .package-price {
+                font-size: 36px;
+            }
+
+            .feature {
+                font-size: 14px;
+                padding: 12px 0;
+            }
+
+            .creator-card {
+                width: 140px;
+            }
+
+            .section-title {
+                font-size: 24px;
             }
         }
     </style>
