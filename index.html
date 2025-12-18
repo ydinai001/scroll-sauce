@@ -96,6 +96,43 @@
             background-clip: text;
         }
 
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
         .nav-btn {
             background: transparent;
             color: #ffffff;
@@ -968,9 +1005,9 @@
 
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 32px;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 60px auto 0;
         }
 
@@ -1051,6 +1088,13 @@
         .testimonial-stat strong {
             color: var(--text-primary);
             font-weight: 700;
+        }
+
+        .testimonial-stars {
+            color: #FFD700;
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
         }
 
         /* FAQ Section */
@@ -1217,6 +1261,24 @@
             .nav-btn {
                 padding: 10px 20px;
                 font-size: 11px;
+            }
+
+            .header-right {
+                gap: 16px;
+            }
+
+            .social-links {
+                gap: 10px;
+            }
+
+            .social-link {
+                width: 36px;
+                height: 36px;
+            }
+
+            .social-link svg {
+                width: 18px;
+                height: 18px;
             }
 
             /* Hero Section */
@@ -1558,7 +1620,23 @@
             <div class="logo-icon">🎬</div>
             <span class="logo-text">Shimmy Edits</span>
         </div>
-        <button class="nav-btn">Get Started</button>
+        <div class="header-right">
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@shimmyluka" target="_blank" rel="noopener noreferrer" class="social-link" title="TikTok">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.88 2.89 2.89 0 01-2.88-2.88 2.89 2.89 0 012.88-2.88c.28 0 .55.04.81.11V9.4a6.33 6.33 0 00-.81-.05A6.34 6.34 0 003 15.69 6.34 6.34 0 009.49 22a6.34 6.34 0 006.34-6.34V9.05a8.16 8.16 0 004.77 1.52V7.12a4.85 4.85 0 01-1.01-.43z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/shimmyluka/" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+                    </svg>
+                </a>
+            </div>
+            <button class="nav-btn">Get Started</button>
+        </div>
     </header>
 
     <!-- Hero -->
@@ -1867,6 +1945,18 @@
                 <div class="testimonial-stats">
                     <span class="testimonial-stat"><strong>67K</strong> followers</span>
                     <span class="testimonial-stat"><strong>12</strong> reels edited</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐️⭐️⭐️⭐️⭐️</div>
+                <p class="testimonial-text">Great job! Quick & great communication!</p>
+                <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop" alt="Verified Client">
+                    <div>
+                        <div class="testimonial-name">Verified Client</div>
+                        <div class="testimonial-role">Content Creator</div>
+                    </div>
                 </div>
             </div>
         </div>
