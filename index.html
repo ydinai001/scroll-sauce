@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Sauce - Short-Form Video Editing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sauce-orange: #ff6b35;
+            --sauce-gold: #f7931e;
+            --sauce-yellow: #ffcc00;
+            --sauce-coral: #ff8566;
+            --dark-base: #0a0a0f;
+            --dark-elevated: #12121a;
+            --dark-surface: #1a1a25;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--dark-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Grain Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 60px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--sauce-orange), var(--sauce-gold));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            animation: sauceDrip 3s ease-in-out infinite;
+        }
+
+        @keyframes sauceDrip {
+            0%, 100% { transform: rotate(-5deg) scale(1); }
+            50% { transform: rotate(5deg) scale(1.05); }
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, var(--sauce-orange), var(--sauce-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: var(--sauce-orange);
+            border: 2px solid var(--sauce-orange);
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-btn:hover {
+            background: var(--sauce-orange);
+            color: var(--dark-base);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 120px 60px 80px;
+            gap: 60px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--sauce-orange);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--sauce-orange);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 6vw, 72px);
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--sauce-orange), var(--sauce-gold), var(--sauce-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .tagline {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 480px;
+            line-height: 1.6;
+        }
+
+        .platforms {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .platform-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--dark-surface);
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .platform-badge:hover {
+            border-color: var(--sauce-orange);
+            transform: translateY(-2px);
+        }
+
+        .platform-badge img {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--sauce-orange), var(--sauce-gold));
+            color: var(--dark-base);
+            border: none;
+            padding: 18px 36px;
+            border-radius: 12px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.4);
+        }
+
+        .cta-secondary {
+            color: var(--text-secondary);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .cta-secondary:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-mockup {
+            position: relative;
+            z-index: 2;
+        }
+
+        .phone-frame {
+            width: 280px;
+            height: 580px;
+            background: var(--dark-elevated);
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow:
+                0 50px 100px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .phone-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 30px;
+            background: var(--dark-elevated);
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        .phone-ui-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            z-index: 5;
+        }
+
+        .reel-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: absolute;
+            right: 12px;
+            bottom: 100px;
+            z-index: 10;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: white;
+            font-size: 12px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .stat-icon {
+            font-size: 24px;
+        }
+
+        /* Floating Elements */
+        .floating-card {
+            position: absolute;
+            background: var(--dark-surface);
+            border-radius: 16px;
+            padding: 16px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .floating-card.card-1 {
+            top: 10%;
+            left: -40px;
+            animation-delay: 0s;
+        }
+
+        .floating-card.card-2 {
+            bottom: 20%;
+            right: -60px;
+            animation-delay: 1s;
+        }
+
+        .floating-card.card-3 {
+            top: 40%;
+            right: -80px;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .card-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .card-value {
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-value.success { color: #4ade80; }
+        .card-value.views { color: var(--sauce-orange); }
+
+        /* Package Section */
+        .package-section {
+            padding: 120px 60px;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--sauce-orange);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .package-visual {
+            position: relative;
+        }
+
+        .video-preview {
+            width: 100%;
+            aspect-ratio: 9/16;
+            max-height: 500px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-preview::after {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--dark-base);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-preview:hover::after {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .package-card {
+            background: var(--dark-elevated);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sauce-orange), var(--sauce-gold), var(--sauce-yellow));
+        }
+
+        .package-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(247, 147, 30, 0.1));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 24px;
+        }
+
+        .package-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .package-desc {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-size: 15px;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .package-price {
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--sauce-orange), var(--sauce-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+        }
+
+        .price-label {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .turnaround {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(74, 222, 128, 0.1);
+            color: #4ade80;
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            margin-bottom: 32px;
+        }
+
+        .features-list {
+            margin-bottom: 36px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .feature:last-child {
+            border-bottom: none;
+        }
+
+        .feature .check {
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(135deg, var(--sauce-orange), var(--sauce-gold));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-base);
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .order-btn {
+            background: linear-gradient(135deg, var(--sauce-orange), var(--sauce-gold));
+            color: var(--dark-base);
+            border: none;
+            padding: 20px 40px;
+            border-radius: 14px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .order-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.4);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 120px 60px;
+            background: var(--dark-elevated);
+            position: relative;
+        }
+
+        .how-it-works::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, var(--sauce-orange));
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: -20px;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--sauce-orange), transparent);
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--dark-surface);
+            border: 2px solid var(--sauce-orange);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 800;
+            margin: 0 auto 24px;
+            color: var(--sauce-orange);
+            transition: all 0.3s;
+        }
+
+        .step:hover .step-number {
+            background: var(--sauce-orange);
+            color: var(--dark-base);
+            transform: rotate(-5deg) scale(1.05);
+        }
+
+        .step-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .step-desc {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .creator-grid {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+        }
+
+        .creator-card {
+            width: 200px;
+            background: var(--dark-surface);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .creator-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--sauce-orange);
+        }
+
+        .creator-img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .creator-info {
+            padding: 16px;
+        }
+
+        .creator-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .creator-handle {
+            color: var(--sauce-orange);
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--sauce-orange), var(--sauce-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: var(--dark-surface);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-link:hover {
+            background: var(--sauce-orange);
+            transform: translateY(-3px);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content {
+                order: 1;
+            }
+
+            .hero-visual {
+                order: 2;
+            }
+
+            .platforms, .hero-cta {
+                justify-content: center;
+            }
+
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step:not(:last-child)::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 16px 24px;
+            }
+
+            .hero, .package-section, .how-it-works, .social-proof {
+                padding: 80px 24px;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">🍯</div>
+            <span class="logo-text">Scroll Sauce</span>
+        </div>
+        <button class="nav-btn">Get Started</button>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Now Accepting New Creators</div>
+            <h1>Make Content<br>That <span class="highlight">Stops The Scroll</span></h1>
+            <p class="tagline">Professional short-form video editing that transforms your raw footage into viral-worthy content. We add the sauce, you get the views.</p>
+
+            <div class="platforms">
+                <div class="platform-badge">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/132px-Instagram_logo_2016.svg.png" alt="Instagram">
+                    <span>Instagram Reels</span>
+                </div>
+                <div class="platform-badge">
+                    <img src="https://sf-tb-sg.ibytedtos.com/obj/eden-sg/uhtyvueh7nulogpoguhm/tiktok-icon2.png" alt="TikTok">
+                    <span>TikTok</span>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <button class="cta-primary">
+                    Order Your First Reel
+                    <span>→</span>
+                </button>
+                <div class="cta-secondary">
+                    <span>▶</span>
+                    See Examples
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="floating-card card-1">
+                <div class="card-label">Delivered</div>
+                <div class="card-value success">✓ Ready to Post</div>
+            </div>
+
+            <div class="floating-card card-2">
+                <div class="card-label">Views This Week</div>
+                <div class="card-value views">📈 127K+</div>
+            </div>
+
+            <div class="floating-card card-3">
+                <div class="card-label">Turnaround</div>
+                <div class="card-value">⚡ 3 Days</div>
+            </div>
+
+            <div class="phone-mockup">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=800&fit=crop" alt="Reel Preview">
+                        <div class="reel-stats">
+                            <div class="stat-item">
+                                <span class="stat-icon">❤️</span>
+                                <span>24.5K</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-icon">💬</span>
+                                <span>892</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-icon">↗️</span>
+                                <span>Share</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Package -->
+    <section class="package-section">
+        <div class="section-header">
+            <p class="section-label">Pricing</p>
+            <h2 class="section-title">Simple Pricing, Stunning Results</h2>
+        </div>
+
+        <div class="package-grid">
+            <div class="package-visual">
+                <div class="video-preview">
+                    <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=1000&fit=crop" alt="Video Editing Preview">
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div class="package-icon">🎬</div>
+                <h3 class="package-name">Single Reel</h3>
+                <p class="package-desc">One scroll-stopping video, professionally edited and optimized for maximum engagement.</p>
+
+                <div class="price-row">
+                    <div class="package-price">$40</div>
+                    <span class="price-label">per reel</span>
+                </div>
+
+                <div class="turnaround">
+                    <span>⚡</span>
+                    3-day turnaround
+                </div>
+
+                <div class="features-list">
+                    <div class="feature">
+                        <span class="check">✓</span>
+                        <span>Up to 60 seconds of content</span>
+                    </div>
+                    <div class="feature">
+                        <span class="check">✓</span>
+                        <span>Professional cuts & smooth transitions</span>
+                    </div>
+                    <div class="feature">
+                        <span class="check">✓</span>
+                        <span>Captions & text overlays included</span>
+                    </div>
+                    <div class="feature">
+                        <span class="check">✓</span>
+                        <span>Trending music & sound effects</span>
+                    </div>
+                    <div class="feature">
+                        <span class="check">✓</span>
+                        <span>1 revision round</span>
+                    </div>
+                </div>
+
+                <button class="order-btn">
+                    Order Now
+                    <span>→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="section-header">
+            <p class="section-label">Process</p>
+            <h2 class="section-title">How It Works</h2>
+        </div>
+
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-icon">📤</div>
+                <h4 class="step-title">Submit Your Footage</h4>
+                <p class="step-desc">Upload your raw video clips and tell us your vision for the final edit</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-icon">✨</div>
+                <h4 class="step-title">We Add The Sauce</h4>
+                <p class="step-desc">Our editors work their magic with cuts, transitions, captions & effects</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-icon">👀</div>
+                <h4 class="step-title">Review & Refine</h4>
+                <p class="step-desc">Preview your edit and request any adjustments you need</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-icon">🚀</div>
+                <h4 class="step-title">Post & Grow</h4>
+                <p class="step-desc">Download your scroll-stopper and watch your engagement soar</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="section-header">
+            <p class="section-label">Creators We've Worked With</p>
+            <h2 class="section-title">Trusted By Content Creators</h2>
+        </div>
+
+        <div class="creator-grid">
+            <div class="creator-card">
+                <img class="creator-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" alt="Creator">
+                <div class="creator-info">
+                    <div class="creator-name">Sarah Chen</div>
+                    <div class="creator-handle">@sarahcreates</div>
+                </div>
+            </div>
+            <div class="creator-card">
+                <img class="creator-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Creator">
+                <div class="creator-info">
+                    <div class="creator-name">Marcus Lee</div>
+                    <div class="creator-handle">@marcuslee.co</div>
+                </div>
+            </div>
+            <div class="creator-card">
+                <img class="creator-img" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop" alt="Creator">
+                <div class="creator-info">
+                    <div class="creator-name">Mia Rodriguez</div>
+                    <div class="creator-handle">@miarodri</div>
+                </div>
+            </div>
+            <div class="creator-card">
+                <img class="creator-img" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop" alt="Creator">
+                <div class="creator-info">
+                    <div class="creator-name">Jake Thompson</div>
+                    <div class="creator-handle">@jakethompson</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">🍯 Scroll Sauce</div>
+
+            <div class="social-links">
+                <div class="social-link">📸</div>
+                <div class="social-link">🎵</div>
+                <div class="social-link">✉️</div>
+            </div>
+
+            <p class="footer-copy">© 2024 Scroll Sauce. Making content that stops the scroll.</p>
+        </div>
+    </footer>
+</body>
+</html>
