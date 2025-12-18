@@ -1012,198 +1012,29 @@
             flex-wrap: wrap;
         }
 
-        /* TikTok Comment Style */
-        .tiktok-comment-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 20px 24px;
-            max-width: 380px;
+        /* Testimonial Image Frames */
+        .testimonial-frame {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border-radius: 24px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            max-width: 420px;
             width: 100%;
         }
 
-        .tiktok-comment-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
+        .testimonial-frame:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
         }
 
-        .tiktok-comment-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: #2CDCBE;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .tiktok-comment-avatar svg {
-            width: 28px;
-            height: 28px;
-            color: #fff;
-        }
-
-        .tiktok-comment-content {
-            flex: 1;
-        }
-
-        .tiktok-comment-author {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 4px;
-        }
-
-        .tiktok-comment-name {
-            font-weight: 700;
-            font-size: 15px;
-            color: #000;
-        }
-
-        .tiktok-verified {
-            width: 16px;
-            height: 16px;
-            background: #20D5EC;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .tiktok-verified svg {
-            width: 10px;
-            height: 10px;
-            color: #fff;
-        }
-
-        .tiktok-comment-text {
-            font-size: 15px;
-            color: #000;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .tiktok-comment-meta {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            font-size: 13px;
-            color: #888;
-        }
-
-        .tiktok-comment-date {
-            color: #888;
-        }
-
-        .tiktok-reply-btn {
-            color: #888;
-            font-weight: 500;
-        }
-
-        .tiktok-comment-actions {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            margin-left: auto;
-        }
-
-        .tiktok-heart {
-            color: #FE2C55;
-            font-size: 18px;
-        }
-
-        .tiktok-likes {
-            color: #FE2C55;
-            font-weight: 600;
-            font-size: 13px;
-        }
-
-        .tiktok-dislike {
-            color: #ccc;
-            font-size: 18px;
-            margin-left: 8px;
-        }
-
-        /* Instagram DM Style */
-        .dm-card {
-            background: #000;
-            border-radius: 16px;
-            padding: 24px;
-            max-width: 380px;
+        .testimonial-frame img {
             width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .dm-message-sent {
-            background: #8B5CF6;
-            color: #fff;
-            padding: 14px 18px;
-            border-radius: 20px 20px 4px 20px;
-            font-size: 15px;
-            margin-bottom: 16px;
-            margin-left: auto;
-            max-width: 85%;
-            text-align: right;
-            position: relative;
-        }
-
-        .dm-edited {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.6);
-            font-style: italic;
-            position: absolute;
-            top: -18px;
-            right: 4px;
-        }
-
-        .dm-message-received {
-            background: #2A2A2A;
-            padding: 16px 18px;
-            border-radius: 20px 20px 20px 4px;
-            max-width: 85%;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .dm-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .dm-response-content {
-            flex: 1;
-        }
-
-        .dm-stars {
-            color: #FFB800;
-            font-size: 22px;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-
-        .dm-review-text {
-            color: #fff;
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        .dm-tap-hint {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 12px;
-            font-size: 12px;
-            color: #888;
-        }
-
-        .dm-tap-hint span {
-            color: #FE2C55;
+            height: auto;
+            border-radius: 12px;
+            display: block;
         }
 
         /* Top Banner */
@@ -1641,17 +1472,9 @@
                 gap: 24px;
             }
 
-            .tiktok-comment-card,
-            .dm-card {
+            .testimonial-frame {
                 max-width: 100%;
-            }
-
-            .tiktok-comment-text {
-                font-size: 14px;
-            }
-
-            .dm-review-text {
-                font-size: 14px;
+                padding: 12px;
             }
 
             /* FAQ */
@@ -2030,51 +1853,14 @@
         </div>
 
         <div class="testimonial-grid">
-            <!-- TikTok Comment - Dude Perfect -->
-            <div class="tiktok-comment-card">
-                <div class="tiktok-comment-header">
-                    <div class="tiktok-comment-avatar">
-                        <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; font-style: italic;">dp</span>
-                    </div>
-                    <div class="tiktok-comment-content">
-                        <div class="tiktok-comment-author">
-                            <span class="tiktok-comment-name">Dude Perfect</span>
-                            <div class="tiktok-verified">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <p class="tiktok-comment-text">holy tuff</p>
-                        <div class="tiktok-comment-meta">
-                            <span class="tiktok-comment-date">11-28</span>
-                            <span class="tiktok-reply-btn">Reply</span>
-                            <div class="tiktok-comment-actions">
-                                <span class="tiktok-heart">❤️</span>
-                                <span class="tiktok-likes">1,720</span>
-                                <span class="tiktok-dislike">👎</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Dude Perfect TikTok Comment -->
+            <div class="testimonial-frame">
+                <img src="images/WhatsApp Image 2025-12-18 at 11.22.57.jpeg" alt="Dude Perfect comment: holy tuff - 1,720 likes">
             </div>
 
-            <!-- Instagram DM Style - 5 Star Review -->
-            <div class="dm-card">
-                <div class="dm-message-sent">
-                    <span class="dm-edited">Edited</span>
-                    Can you rate your experience out of 5 stars with feedback?
-                </div>
-                <div class="dm-message-received">
-                    <img class="dm-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&h=96&fit=crop" alt="Client">
-                    <div class="dm-response-content">
-                        <div class="dm-stars">⭐⭐⭐⭐⭐</div>
-                        <p class="dm-review-text">great job/ quick & great communication!</p>
-                    </div>
-                </div>
-                <div class="dm-tap-hint">
-                    Double tap to <span>❤️</span>
-                </div>
+            <!-- 5 Star Instagram DM Review -->
+            <div class="testimonial-frame">
+                <img src="images/WhatsApp Image 2025-12-18 at 11.29.55.jpeg" alt="5 star review: great job, quick & great communication">
             </div>
         </div>
     </section>
