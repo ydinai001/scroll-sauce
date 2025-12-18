@@ -1629,8 +1629,8 @@
             padding: 24px;
             overflow-y: auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
         }
 
         .gallery-video-item {
@@ -1640,6 +1640,7 @@
             background: var(--dark-surface);
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
+            min-height: 0;
         }
 
         .gallery-video-item:hover {
@@ -1655,6 +1656,13 @@
         }
 
         /* Modal Responsive */
+        @media (max-width: 900px) {
+            .video-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
+
         @media (max-width: 768px) {
             .video-modal {
                 max-height: 85vh;
@@ -1693,7 +1701,7 @@
             }
 
             .gallery-video-item {
-                max-height: 300px;
+                max-height: 400px;
             }
         }
     </style>
