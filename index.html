@@ -461,35 +461,13 @@
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
         }
 
-        .video-preview img {
+        .video-preview img,
+        .video-preview video {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .video-preview::after {
-            content: '▶';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: var(--dark-base);
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .video-preview:hover::after {
-            transform: translate(-50%, -50%) scale(1.1);
-        }
 
         .package-card {
             background: var(--dark-elevated);
@@ -1153,7 +1131,9 @@
         <div class="package-grid">
             <div class="package-visual">
                 <div class="video-preview">
-                    <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=1000&fit=crop" alt="Video Editing Preview">
+                    <video autoplay muted loop playsinline>
+                        <source src="assets/videos/preview-reel.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
 
