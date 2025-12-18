@@ -1776,6 +1776,10 @@
                     <span>▶</span>
                     See Examples
                 </div>
+                <div class="cta-secondary" id="lets-talk-btn">
+                    <span>💬</span>
+                    Let's Talk!
+                </div>
             </div>
         </div>
 
@@ -2060,27 +2064,27 @@
             </div>
             <div class="video-gallery">
                 <div class="gallery-video-item">
-                    <video controls playsinline>
+                    <video controls playsinline preload="none" poster="assets/thumbnails/thumb-1.jpg">
                         <source src="assets/videos/clip-1.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="gallery-video-item">
-                    <video controls playsinline>
+                    <video controls playsinline preload="none" poster="assets/thumbnails/thumb-2.jpg">
                         <source src="assets/videos/clip-2.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="gallery-video-item">
-                    <video controls playsinline>
+                    <video controls playsinline preload="none" poster="assets/thumbnails/thumb-3.jpg">
                         <source src="assets/videos/clip-3.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="gallery-video-item">
-                    <video controls playsinline>
+                    <video controls playsinline preload="none" poster="assets/thumbnails/thumb-4.jpg">
                         <source src="assets/videos/clip-4.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="gallery-video-item">
-                    <video controls playsinline>
+                    <video controls playsinline preload="none" poster="assets/thumbnails/thumb-5.jpg">
                         <source src="assets/videos/clip-5.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -2126,6 +2130,14 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && videoModal.classList.contains('active')) {
                 closeModal();
+            }
+        });
+
+        // Let's Talk button - opens Tawk.to chat
+        const letsTalkBtn = document.getElementById('lets-talk-btn');
+        letsTalkBtn.addEventListener('click', () => {
+            if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+                Tawk_API.maximize();
             }
         });
     </script>
