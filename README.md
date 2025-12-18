@@ -2,7 +2,7 @@
 
 Short-form video editing service for creators who want scroll-stopping content.
 
-**Live Preview:** https://tangerine-cobbler-02b4b9.netlify.app/
+**Live Preview:** https://adorable-zabaione-493e62.netlify.app/
 
 ## Service Overview
 

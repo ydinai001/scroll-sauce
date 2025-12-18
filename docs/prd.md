@@ -97,7 +97,7 @@ Transform raw footage into viral-worthy content with professional editing, trans
 
 ## 7. References
 
-- **Landing Page Mockup**: https://tangerine-cobbler-02b4b9.netlify.app/
+- **Landing Page Mockup**: https://adorable-zabaione-493e62.netlify.app/
 - **Project Folder**: `/Users/yahavdinai/Web-App-Projects/scroll-sauce/`
 
 ---

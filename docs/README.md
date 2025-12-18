@@ -12,7 +12,7 @@ Project documentation managed with [BMAD Method](https://github.com/bmadcode/bma
 
 ## Quick Links
 
-- **Live Mockup**: https://tangerine-cobbler-02b4b9.netlify.app/
+- **Live Mockup**: https://adorable-zabaione-493e62.netlify.app/
 - **Project Root**: `/Users/yahavdinai/Web-App-Projects/scroll-sauce/`
 
 ## BMAD Workflows
