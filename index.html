@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scroll Sauce - Short-Form Video Editing</title>
+    <title>Shimmy Edits - Short-Form Video Editing</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -127,6 +127,12 @@
             padding: 120px 60px 80px;
             gap: 60px;
             position: relative;
+            background:
+                linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.95) 100%),
+                url('assets/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
         }
 
         .hero::before {
@@ -139,6 +145,17 @@
             background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
             border-radius: 50%;
             filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to bottom, transparent, var(--dark-base));
             pointer-events: none;
         }
 
@@ -332,6 +349,166 @@
             padding: 20px;
             background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
             z-index: 5;
+        }
+
+        /* TikTok UI Elements */
+        .tiktok-tabs {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 10;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .tiktok-tab {
+            color: rgba(255, 255, 255, 0.6);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .tiktok-tab.active {
+            color: white;
+            position: relative;
+        }
+
+        .tiktok-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .tiktok-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            position: absolute;
+            right: 12px;
+            bottom: 120px;
+            z-index: 10;
+        }
+
+        .tiktok-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: white;
+            font-size: 11px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .tiktok-action-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .tiktok-profile {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tiktok-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tiktok-profile-plus {
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 18px;
+            height: 18px;
+            background: #fe2c55;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .tiktok-music {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #333, #111);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: spin 3s linear infinite;
+            border: 8px solid #222;
+            box-sizing: border-box;
+        }
+
+        .tiktok-music::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: #666;
+            border-radius: 50%;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .tiktok-creator-info {
+            position: absolute;
+            bottom: 80px;
+            left: 16px;
+            z-index: 10;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .tiktok-username {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .tiktok-caption {
+            font-size: 13px;
+            max-width: 180px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .tiktok-sound {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+
+        .tiktok-sound-icon {
+            animation: bounce 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-2px); }
         }
 
         .reel-stats {
@@ -1044,8 +1221,8 @@
     <!-- Header -->
     <header class="header">
         <div class="logo">
-            <div class="logo-icon">🍯</div>
-            <span class="logo-text">Scroll Sauce</span>
+            <div class="logo-icon">🎬</div>
+            <span class="logo-text">Shimmy Edits</span>
         </div>
         <button class="nav-btn">Get Started</button>
     </header>
@@ -1100,19 +1277,50 @@
                 <div class="phone-frame">
                     <div class="phone-notch"></div>
                     <div class="phone-screen">
-                        <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=800&fit=crop" alt="Reel Preview">
-                        <div class="reel-stats">
-                            <div class="stat-item">
-                                <span class="stat-icon">❤️</span>
+                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=800&fit=crop" alt="TikTok Preview">
+
+                        <!-- TikTok Top Tabs -->
+                        <div class="tiktok-tabs">
+                            <span class="tiktok-tab">Following</span>
+                            <span class="tiktok-tab active">For You</span>
+                        </div>
+
+                        <!-- TikTok Right Side Actions -->
+                        <div class="tiktok-actions">
+                            <div class="tiktok-action">
+                                <div class="tiktok-profile">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop" alt="Profile">
+                                    <div class="tiktok-profile-plus">+</div>
+                                </div>
+                            </div>
+                            <div class="tiktok-action">
+                                <span class="tiktok-action-icon">❤️</span>
                                 <span>24.5K</span>
                             </div>
-                            <div class="stat-item">
-                                <span class="stat-icon">💬</span>
+                            <div class="tiktok-action">
+                                <span class="tiktok-action-icon">💬</span>
                                 <span>892</span>
                             </div>
-                            <div class="stat-item">
-                                <span class="stat-icon">↗️</span>
+                            <div class="tiktok-action">
+                                <span class="tiktok-action-icon">🔖</span>
+                                <span>Save</span>
+                            </div>
+                            <div class="tiktok-action">
+                                <span class="tiktok-action-icon">↗️</span>
                                 <span>Share</span>
+                            </div>
+                            <div class="tiktok-action">
+                                <div class="tiktok-music"></div>
+                            </div>
+                        </div>
+
+                        <!-- TikTok Creator Info -->
+                        <div class="tiktok-creator-info">
+                            <div class="tiktok-username">@shimmyedits</div>
+                            <div class="tiktok-caption">The edit that got 1M views 🔥 #basketball #viral</div>
+                            <div class="tiktok-sound">
+                                <span class="tiktok-sound-icon">🎵</span>
+                                <span>Original Sound - Shimmy Edits</span>
                             </div>
                         </div>
                     </div>
@@ -1284,7 +1492,7 @@
             </div>
 
             <div class="testimonial-card">
-                <p class="testimonial-text">The transitions and timing are always on point. My engagement literally doubled after I started using Scroll Sauce for my reels. Worth every penny.</p>
+                <p class="testimonial-text">The transitions and timing are always on point. My engagement literally doubled after I started using Shimmy Edits for my reels. Worth every penny.</p>
                 <div class="testimonial-author">
                     <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop" alt="Marcus">
                     <div>
@@ -1383,7 +1591,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-logo">🍯 Scroll Sauce</div>
+            <div class="footer-logo">🎬 Shimmy Edits</div>
 
             <div class="social-links">
                 <div class="social-link">📸</div>
@@ -1391,7 +1599,7 @@
                 <div class="social-link">✉️</div>
             </div>
 
-            <p class="footer-copy">© 2024 Scroll Sauce. Making content that stops the scroll.</p>
+            <p class="footer-copy">© 2024 Shimmy Edits. Making content that stops the scroll.</p>
         </div>
     </footer>
 </body>
